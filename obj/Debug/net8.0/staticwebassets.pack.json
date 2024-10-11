@@ -1,0 +1,41 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Projects\\TuneBox\\wwwroot\\assets\\index-DfQ3Eo-l.js",
+      "PackagePath": "staticwebassets\\assets\\index-DfQ3Eo-l.js"
+    },
+    {
+      "Id": "C:\\Projects\\TuneBox\\wwwroot\\assets\\index-DiwrgTda.css",
+      "PackagePath": "staticwebassets\\assets\\index-DiwrgTda.css"
+    },
+    {
+      "Id": "C:\\Projects\\TuneBox\\wwwroot\\assets\\react-CHdo91hT.svg",
+      "PackagePath": "staticwebassets\\assets\\react-CHdo91hT.svg"
+    },
+    {
+      "Id": "C:\\Projects\\TuneBox\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "C:\\Projects\\TuneBox\\wwwroot\\vite.svg",
+      "PackagePath": "staticwebassets\\vite.svg"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.TuneBox.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.TuneBox.props",
+      "PackagePath": "build\\TuneBox.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.TuneBox.props",
+      "PackagePath": "buildMultiTargeting\\TuneBox.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.TuneBox.props",
+      "PackagePath": "buildTransitive\\TuneBox.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
