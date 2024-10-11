@@ -33,3 +33,4 @@ C:\Projects\TuneBox\obj\Debug\net8.0\refint\TuneBox.dll
 C:\Projects\TuneBox\obj\Debug\net8.0\TuneBox.pdb
 C:\Projects\TuneBox\obj\Debug\net8.0\TuneBox.genruntimeconfig.cache
 C:\Projects\TuneBox\obj\Debug\net8.0\ref\TuneBox.dll
+C:\Projects\TuneBox\obj\Debug\net8.0\TuneBox.sourcelink.json

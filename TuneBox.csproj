@@ -10,4 +10,8 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
+  <Target Name="BuildClientApp" AfterTargets="Build">
+    <Exec Command="npm run build" WorkingDirectory="Client" />
+  </Target>
+
 </Project>

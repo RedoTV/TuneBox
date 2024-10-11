@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "6ahp/bXuHxKX51LISvpmnO0YoA7CbJEv3m4poopPsHo=",
+  "Hash": "M/kFF7zsGxaCbjckLmoKjCeQ10FmXRAKa2tpnddopEA=",
   "Source": "TuneBox",
   "BasePath": "_content/TuneBox",
   "Mode": "Default",
@@ -17,12 +17,12 @@
   ],
   "Assets": [
     {
-      "Identity": "C:\\Projects\\TuneBox\\wwwroot\\assets\\index-DfQ3Eo-l.js",
+      "Identity": "C:\\Projects\\TuneBox\\wwwroot\\assets\\index-5sa2Fw8w.js",
       "SourceId": "TuneBox",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Projects\\TuneBox\\wwwroot\\",
       "BasePath": "_content/TuneBox",
-      "RelativePath": "assets/index-DfQ3Eo-l.js",
+      "RelativePath": "assets/index-5sa2Fw8w.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -33,7 +33,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\index-DfQ3Eo-l.js"
+      "OriginalItemSpec": "wwwroot\\assets\\index-5sa2Fw8w.js"
     },
     {
       "Identity": "C:\\Projects\\TuneBox\\wwwroot\\assets\\index-DiwrgTda.css",
@@ -53,25 +53,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\index-DiwrgTda.css"
-    },
-    {
-      "Identity": "C:\\Projects\\TuneBox\\wwwroot\\assets\\react-CHdo91hT.svg",
-      "SourceId": "TuneBox",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Projects\\TuneBox\\wwwroot\\",
-      "BasePath": "_content/TuneBox",
-      "RelativePath": "assets/react-CHdo91hT.svg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\react-CHdo91hT.svg"
     },
     {
       "Identity": "C:\\Projects\\TuneBox\\wwwroot\\index.html",
