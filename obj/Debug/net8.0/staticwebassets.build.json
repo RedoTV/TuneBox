@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "M/kFF7zsGxaCbjckLmoKjCeQ10FmXRAKa2tpnddopEA=",
+  "Hash": "RgICke3RsRWXIpvGEt2hS5UKlwj980ok2eJjv0Q271Q=",
   "Source": "TuneBox",
   "BasePath": "_content/TuneBox",
   "Mode": "Default",
@@ -10,19 +10,19 @@
     {
       "Name": "TuneBox\\wwwroot",
       "Source": "TuneBox",
-      "ContentRoot": "C:\\Projects\\TuneBox\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\vadim\\projects\\TuneBox\\wwwroot\\",
       "BasePath": "_content/TuneBox",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Projects\\TuneBox\\wwwroot\\assets\\index-5sa2Fw8w.js",
+      "Identity": "C:\\Users\\vadim\\projects\\TuneBox\\wwwroot\\assets\\index-BLiTugnk.css",
       "SourceId": "TuneBox",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Projects\\TuneBox\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\vadim\\projects\\TuneBox\\wwwroot\\",
       "BasePath": "_content/TuneBox",
-      "RelativePath": "assets/index-5sa2Fw8w.js",
+      "RelativePath": "assets/index-BLiTugnk.css",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -33,15 +33,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\index-5sa2Fw8w.js"
+      "OriginalItemSpec": "wwwroot\\assets\\index-BLiTugnk.css"
     },
     {
-      "Identity": "C:\\Projects\\TuneBox\\wwwroot\\assets\\index-DiwrgTda.css",
+      "Identity": "C:\\Users\\vadim\\projects\\TuneBox\\wwwroot\\assets\\index-feXZ6TS0.js",
       "SourceId": "TuneBox",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Projects\\TuneBox\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\vadim\\projects\\TuneBox\\wwwroot\\",
       "BasePath": "_content/TuneBox",
-      "RelativePath": "assets/index-DiwrgTda.css",
+      "RelativePath": "assets/index-feXZ6TS0.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -52,13 +52,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\index-DiwrgTda.css"
+      "OriginalItemSpec": "wwwroot\\assets\\index-feXZ6TS0.js"
     },
     {
-      "Identity": "C:\\Projects\\TuneBox\\wwwroot\\index.html",
+      "Identity": "C:\\Users\\vadim\\projects\\TuneBox\\wwwroot\\index.html",
       "SourceId": "TuneBox",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Projects\\TuneBox\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\vadim\\projects\\TuneBox\\wwwroot\\",
       "BasePath": "_content/TuneBox",
       "RelativePath": "index.html",
       "AssetKind": "All",
@@ -74,10 +74,10 @@
       "OriginalItemSpec": "wwwroot\\index.html"
     },
     {
-      "Identity": "C:\\Projects\\TuneBox\\wwwroot\\vite.svg",
+      "Identity": "C:\\Users\\vadim\\projects\\TuneBox\\wwwroot\\vite.svg",
       "SourceId": "TuneBox",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Projects\\TuneBox\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\vadim\\projects\\TuneBox\\wwwroot\\",
       "BasePath": "_content/TuneBox",
       "RelativePath": "vite.svg",
       "AssetKind": "All",

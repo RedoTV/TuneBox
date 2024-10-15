@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 import { getAllMusic } from '../../services/music_service'
+import Track from '../track/Track'
+import styles from './music.module.css'
 
 export default function Music() {
   const [tracks, setTracks] = useState([])
@@ -15,12 +17,9 @@ export default function Music() {
 
   return (
     <>
-      <ul>
+      <ul className={styles.track_container}>
         {tracks.map((track, index) => (
-          <li key={index}>
-            <h1>{track.id}</h1>
-            <p>{track.name}</p>
-          </li>
+          <Track track={track} key={index} />
         ))}
       </ul>
     </>
