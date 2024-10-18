@@ -70,3 +70,4 @@ C:\Users\vadim\projects\TuneBox\obj\Debug\net8.0\refint\TuneBox.dll
 C:\Users\vadim\projects\TuneBox\obj\Debug\net8.0\TuneBox.pdb
 C:\Users\vadim\projects\TuneBox\obj\Debug\net8.0\TuneBox.genruntimeconfig.cache
 C:\Users\vadim\projects\TuneBox\obj\Debug\net8.0\ref\TuneBox.dll
+C:\Users\vadim\projects\TuneBox\bin\Debug\net8.0\Client\src\services\tracks.json

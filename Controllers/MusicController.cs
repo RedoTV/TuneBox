@@ -15,9 +15,9 @@ public class MusicController : ControllerBase
     }
 
     [HttpGet]
-    public IEnumerable<Track> Get()
+    public IEnumerable<Song> Get()
     {
-        return Enumerable.Range(1, 5).Select(index => new Track() { Id = index, Name = "Кокос" })
+        return Enumerable.Range(1, 5).Select(index => new Song() { Id = index, Name = "Кокос" })
         .ToArray();
     }
 }
