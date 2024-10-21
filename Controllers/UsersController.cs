@@ -4,7 +4,6 @@ using TuneBox.Services;
 
 namespace TuneBox.Controllers;
 
-
 [Route("api/[controller]")]
 [ApiController]
 public class UsersController : ControllerBase

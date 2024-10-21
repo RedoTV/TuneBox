@@ -1,5 +1,8 @@
+using Microsoft.Extensions.DependencyInjection;
+using Serilog;
 using TuneBox.Controllers;
 using TuneBox.DbContexts;
+using TuneBox.Mapper;
 using TuneBox.Services;
 
 string clientPolicy = "tuneBoxReactOrigin";
@@ -15,7 +18,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: clientPolicy,
         policy =>
         {
-            policy.WithOrigins("http://localhost:3434");
+            policy.WithOrigins("http://localhost:3434", "https://localhost:7156");
             policy.AllowAnyHeader();
             policy.AllowAnyMethod();
         });
@@ -25,6 +28,17 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// Configure Serilog
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .WriteTo.File("logs/log.txt", rollingInterval: RollingInterval.Day)
+    .CreateLogger();
+
+// Use Serilog as the logging provider
+builder.Host.UseSerilog();
+
+builder.Services.AddAutoMapper(typeof(UserProfile));
 
 builder.Services.AddSqlite<UsersDbContext>(usersDbConnection);
 builder.Services.AddSqlite<TuneBoxDbContext>(tuneBoxDbConnection);
@@ -43,6 +57,8 @@ if (app.Environment.IsDevelopment())
 app.UseCors(clientPolicy);
 
 app.UseStaticFiles();
+
+app.UseSerilogRequestLogging();
 
 app.UseHttpsRedirection();
 

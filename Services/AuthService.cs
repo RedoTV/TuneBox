@@ -53,6 +53,10 @@ public class AuthService(UsersDbContext _usersDbContext, IMapper _mapper, IConfi
         if (_usersDbContext.Users.Any(u => u.Name == mappedUser.Name))
             throw new ArgumentException("User with this name already exists");
 
+        //if user with this name exists in DB throw new Exception 
+        if (user.Password.Length < 8)
+            throw new ArgumentException("User password must be 8 or greater chars length");
+
         string hashedPassword = HashPassword(user.Password, out byte[] salt);
 
         //init empty properties
