@@ -8,6 +8,5 @@ public class Playlist
 
     // Связи
     public int UserId { get; set; }  // Владелец плейлиста
-    public User User { get; set; } = null!;
     public ICollection<PlaylistSong> PlaylistSongs { get; set; } = null!; // Песни в плейлисте через промежуточную таблицу
 }

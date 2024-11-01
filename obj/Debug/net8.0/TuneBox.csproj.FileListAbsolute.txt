@@ -190,3 +190,9 @@ C:\Users\vadim\projects\TuneBox\bin\Debug\net8.0\Serilog.Settings.Configuration.
 C:\Users\vadim\projects\TuneBox\bin\Debug\net8.0\Serilog.Sinks.Console.dll
 C:\Users\vadim\projects\TuneBox\bin\Debug\net8.0\Serilog.Sinks.Debug.dll
 C:\Users\vadim\projects\TuneBox\bin\Debug\net8.0\Serilog.Sinks.File.dll
+C:\Users\vadim\projects\TuneBox\bin\Debug\net8.0\NAudio.dll
+C:\Users\vadim\projects\TuneBox\bin\Debug\net8.0\NAudio.Asio.dll
+C:\Users\vadim\projects\TuneBox\bin\Debug\net8.0\NAudio.Core.dll
+C:\Users\vadim\projects\TuneBox\bin\Debug\net8.0\NAudio.Midi.dll
+C:\Users\vadim\projects\TuneBox\bin\Debug\net8.0\NAudio.Wasapi.dll
+C:\Users\vadim\projects\TuneBox\bin\Debug\net8.0\NAudio.WinMM.dll

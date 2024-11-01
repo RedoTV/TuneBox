@@ -1,6 +1,5 @@
-using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
 using Serilog;
-using TuneBox.Controllers;
 using TuneBox.DbContexts;
 using TuneBox.Mapper;
 using TuneBox.Services;
@@ -27,7 +26,10 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "TuneBox API", Version = "v1" });
+});
 
 // Configure Serilog
 Log.Logger = new LoggerConfiguration()
@@ -39,10 +41,20 @@ Log.Logger = new LoggerConfiguration()
 builder.Host.UseSerilog();
 
 builder.Services.AddAutoMapper(typeof(UserProfile));
+builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddSqlite<UsersDbContext>(usersDbConnection);
 builder.Services.AddSqlite<TuneBoxDbContext>(tuneBoxDbConnection);
+
 builder.Services.AddTransient<IAuthService, AuthService>();
+builder.Services.AddTransient<IMusicService>(provider =>
+{
+    var tuneBoxContext = provider.GetRequiredService<TuneBoxDbContext>();
+    var fileStoragePath = Path.Combine(builder.Environment.ContentRootPath, "wwwroot/audio/mp3");
+    var httpContextAccessor = provider.GetRequiredService<IHttpContextAccessor>();
+
+    return new MusicService(tuneBoxContext, fileStoragePath, httpContextAccessor);
+});
 
 var app = builder.Build();
 

@@ -9,6 +9,14 @@
       "PackagePath": "staticwebassets\\assets\\index-Btjl-mzt.css"
     },
     {
+      "Id": "C:\\Users\\vadim\\projects\\TuneBox\\wwwroot\\audio\\mp3\\7efa28dd-f126-4103-982c-533f85dfe228.mp3",
+      "PackagePath": "staticwebassets\\audio\\mp3\\7efa28dd-f126-4103-982c-533f85dfe228.mp3"
+    },
+    {
+      "Id": "C:\\Users\\vadim\\projects\\TuneBox\\wwwroot\\audio\\mp3\\dfb75638-489b-4f12-845a-858883d8d035.mp3",
+      "PackagePath": "staticwebassets\\audio\\mp3\\dfb75638-489b-4f12-845a-858883d8d035.mp3"
+    },
+    {
       "Id": "C:\\Users\\vadim\\projects\\TuneBox\\wwwroot\\index.html",
       "PackagePath": "staticwebassets\\index.html"
     },
