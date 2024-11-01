@@ -8,6 +8,8 @@ export default defineConfig({
     port: '3434'
   },
   build: {
-    outDir: '../wwwroot'
-  }
+    outDir: '../wwwroot', // указывает сборку в wwwroot
+    assetsDir: 'assets' // указывает на поддиректорию assets
+  },
+  base: '/' // установите base для правильных ссылок
 })

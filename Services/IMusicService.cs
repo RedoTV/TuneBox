@@ -7,14 +7,15 @@ namespace TuneBox.Services;
 public interface IMusicService
 {
     Task<SongResponseDto> AddSongAsync(AddSongRequestDto songDto, IFormFile mp3File);
-    Task<Song?> GetSongByIdAsync(int songId);
-    Task<IEnumerable<Song>> GetAllSongsAsync();
+    Task<SongResponseDto?> GetSongByIdAsync(int songId);
+    Task<IEnumerable<SongResponseDto>> GetAllSongsAsync(int skip, int count);
     Task<bool> DeleteSongAsync(int songId);
 
     Task<Genre> AddGenreAsync(Genre genre);
     Task<Genre?> GetGenreByNameAsync(string genreName);
+    Task<ICollection<SongResponseDto>> GetSongsByGenreAsync(string genreName);
     Task<IEnumerable<Genre>> GetAllGenresAsync();
-    Task<bool> DeleteGenreAsync(int genreId);
+    Task<bool> DeleteGenreAsync(string genreName);
 
     Task<Playlist> CreatePlaylistAsync(Playlist playlist);
     Task<Playlist?> GetPlaylistByIdAsync(int playlistId);

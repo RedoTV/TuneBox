@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "tWS3u5l90HaYUPM851rmj8yQG9C67l6gh1hbTEDyUUw=",
+  "Hash": "Zqby/gLnP2URd3UnYfc2Gv3Wai5nFgbqa69NXxpcnjw=",
   "Source": "TuneBox",
   "BasePath": "_content/TuneBox",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "TuneBox\\wwwroot",
       "Source": "TuneBox",
-      "ContentRoot": "C:\\Users\\vadim\\projects\\TuneBox\\wwwroot\\",
+      "ContentRoot": "C:\\Projects\\TuneBox\\wwwroot\\",
       "BasePath": "_content/TuneBox",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\vadim\\projects\\TuneBox\\wwwroot\\assets\\index-BqSI2tzO.js",
+      "Identity": "C:\\Projects\\TuneBox\\wwwroot\\assets\\index-BqSI2tzO.js",
       "SourceId": "TuneBox",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\vadim\\projects\\TuneBox\\wwwroot\\",
+      "ContentRoot": "C:\\Projects\\TuneBox\\wwwroot\\",
       "BasePath": "_content/TuneBox",
       "RelativePath": "assets/index-BqSI2tzO.js",
       "AssetKind": "All",
@@ -36,10 +36,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\index-BqSI2tzO.js"
     },
     {
-      "Identity": "C:\\Users\\vadim\\projects\\TuneBox\\wwwroot\\assets\\index-Btjl-mzt.css",
+      "Identity": "C:\\Projects\\TuneBox\\wwwroot\\assets\\index-Btjl-mzt.css",
       "SourceId": "TuneBox",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\vadim\\projects\\TuneBox\\wwwroot\\",
+      "ContentRoot": "C:\\Projects\\TuneBox\\wwwroot\\",
       "BasePath": "_content/TuneBox",
       "RelativePath": "assets/index-Btjl-mzt.css",
       "AssetKind": "All",
@@ -55,48 +55,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\index-Btjl-mzt.css"
     },
     {
-      "Identity": "C:\\Users\\vadim\\projects\\TuneBox\\wwwroot\\audio\\mp3\\7efa28dd-f126-4103-982c-533f85dfe228.mp3",
+      "Identity": "C:\\Projects\\TuneBox\\wwwroot\\index.html",
       "SourceId": "TuneBox",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\vadim\\projects\\TuneBox\\wwwroot\\",
-      "BasePath": "_content/TuneBox",
-      "RelativePath": "audio/mp3/7efa28dd-f126-4103-982c-533f85dfe228.mp3",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\audio\\mp3\\7efa28dd-f126-4103-982c-533f85dfe228.mp3"
-    },
-    {
-      "Identity": "C:\\Users\\vadim\\projects\\TuneBox\\wwwroot\\audio\\mp3\\dfb75638-489b-4f12-845a-858883d8d035.mp3",
-      "SourceId": "TuneBox",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\vadim\\projects\\TuneBox\\wwwroot\\",
-      "BasePath": "_content/TuneBox",
-      "RelativePath": "audio/mp3/dfb75638-489b-4f12-845a-858883d8d035.mp3",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\audio\\mp3\\dfb75638-489b-4f12-845a-858883d8d035.mp3"
-    },
-    {
-      "Identity": "C:\\Users\\vadim\\projects\\TuneBox\\wwwroot\\index.html",
-      "SourceId": "TuneBox",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\vadim\\projects\\TuneBox\\wwwroot\\",
+      "ContentRoot": "C:\\Projects\\TuneBox\\wwwroot\\",
       "BasePath": "_content/TuneBox",
       "RelativePath": "index.html",
       "AssetKind": "All",
@@ -112,10 +74,10 @@
       "OriginalItemSpec": "wwwroot\\index.html"
     },
     {
-      "Identity": "C:\\Users\\vadim\\projects\\TuneBox\\wwwroot\\vite.svg",
+      "Identity": "C:\\Projects\\TuneBox\\wwwroot\\vite.svg",
       "SourceId": "TuneBox",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\vadim\\projects\\TuneBox\\wwwroot\\",
+      "ContentRoot": "C:\\Projects\\TuneBox\\wwwroot\\",
       "BasePath": "_content/TuneBox",
       "RelativePath": "vite.svg",
       "AssetKind": "All",

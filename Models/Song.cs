@@ -8,11 +8,9 @@ public class Song
     public TimeSpan Duration { get; set; }
     public string? AudioUrl { get; set; }
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-
-    // Новый путь к mp3-файлу
     public string? FilePath { get; set; }
 
     // Связи
-    public Genre Genre { get; set; } = null!;
+    public ICollection<Genre> Genres { get; set; } = null!;
     public ICollection<PlaylistSong> PlaylistSongs { get; set; } = null!;
 }

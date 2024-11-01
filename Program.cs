@@ -1,3 +1,4 @@
+using Microsoft.Extensions.FileProviders;
 using Microsoft.OpenApi.Models;
 using Serilog;
 using TuneBox.DbContexts;
@@ -50,7 +51,7 @@ builder.Services.AddTransient<IAuthService, AuthService>();
 builder.Services.AddTransient<IMusicService>(provider =>
 {
     var tuneBoxContext = provider.GetRequiredService<TuneBoxDbContext>();
-    var fileStoragePath = Path.Combine(builder.Environment.ContentRootPath, "wwwroot/audio/mp3");
+    var fileStoragePath = Path.Combine(builder.Environment.ContentRootPath, "audios");
     var httpContextAccessor = provider.GetRequiredService<IHttpContextAccessor>();
 
     return new MusicService(tuneBoxContext, fileStoragePath, httpContextAccessor);
@@ -68,7 +69,15 @@ if (app.Environment.IsDevelopment())
 
 app.UseCors(clientPolicy);
 
+// Обслуживает статические файлы из wwwroot
 app.UseStaticFiles();
+
+// Добавляем отдельную настройку для аудиофайлов из папки audios
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(Path.Combine(builder.Environment.ContentRootPath, "audios")),
+    RequestPath = "/audios"
+});
 
 app.UseSerilogRequestLogging();
 
