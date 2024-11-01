@@ -17,7 +17,7 @@ public interface IMusicService
     Task<IEnumerable<Genre>> GetAllGenresAsync();
     Task<bool> DeleteGenreAsync(string genreName);
 
-    Task<Playlist> CreatePlaylistAsync(Playlist playlist);
+    Task<Playlist> CreatePlaylistAsync(AddPlaylistRequestDto playlistDto);
     Task<Playlist?> GetPlaylistByIdAsync(int playlistId);
     Task<IEnumerable<Playlist>> GetUserPlaylistsAsync(int userId);
     Task<bool> AddSongToPlaylistAsync(int playlistId, int songId);

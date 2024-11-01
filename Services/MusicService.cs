@@ -162,10 +162,18 @@ public class MusicService : IMusicService
     }
 
     // Методы для работы с плейлистами
-    public async Task<Playlist> CreatePlaylistAsync(Playlist playlist)
+    public async Task<Playlist> CreatePlaylistAsync(AddPlaylistRequestDto playlistDto)
     {
+        var playlist = new Playlist
+        {
+            Name = playlistDto.Name,
+            UserId = playlistDto.UserId,
+            CreatedAt = DateTime.UtcNow
+        };
+
         _tuneBoxContext.Playlists.Add(playlist);
         await _tuneBoxContext.SaveChangesAsync();
+
         return playlist;
     }
 

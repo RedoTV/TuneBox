@@ -85,7 +85,7 @@ public class MusicController : ControllerBase
 
     // Method to create a new playlist
     [HttpPost("playlists")]
-    public async Task<IActionResult> CreatePlaylist(Playlist playlist)
+    public async Task<IActionResult> CreatePlaylist(AddPlaylistRequestDto playlist)
     {
         var createdPlaylist = await _musicService.CreatePlaylistAsync(playlist);
         return Ok(createdPlaylist);
