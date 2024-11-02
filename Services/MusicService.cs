@@ -3,6 +3,7 @@ using TuneBox.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using TuneBox.Models.Dtos;
 using NAudio.Wave;
+using System.Security.Claims;
 
 namespace TuneBox.Services;
 public class MusicService : IMusicService
@@ -162,12 +163,20 @@ public class MusicService : IMusicService
     }
 
     // Методы для работы с плейлистами
-    public async Task<Playlist> CreatePlaylistAsync(AddPlaylistRequestDto playlistDto)
+    public async Task<Playlist?> CreatePlaylistAsync(AddPlaylistRequestDto playlistDto)
     {
+        // Retrieve UserId from claims
+        var userIdClaim = _httpContextAccessor.HttpContext?.User.FindFirst(ClaimTypes.NameIdentifier);
+        if (userIdClaim == null)
+            return null; // Or handle this case as appropriate for your application, e.g., throw an exception.
+
+        // Parse UserId from claim
+        int userId = int.Parse(userIdClaim.Value);
+
         var playlist = new Playlist
         {
             Name = playlistDto.Name,
-            UserId = playlistDto.UserId,
+            UserId = userId, // Assign UserId from claims
             CreatedAt = DateTime.UtcNow
         };
 
@@ -177,22 +186,32 @@ public class MusicService : IMusicService
         return playlist;
     }
 
-    public async Task<Playlist?> GetPlaylistByIdAsync(int playlistId)
+    public async Task<PlaylistResponseDto?> GetPlaylistByIdAsync(int playlistId)
     {
-        return await _tuneBoxContext.Playlists
+        var playlist = await _tuneBoxContext.Playlists
             .Include(p => p.PlaylistSongs)
             .ThenInclude(ps => ps.Song)
+            .ThenInclude(s => s.Genres)
             .FirstOrDefaultAsync(p => p.Id == playlistId);
+
+        if (playlist == null) return null;
+
+        return await MapPlaylistToResponse(playlist);
     }
 
-    public async Task<IEnumerable<Playlist>> GetUserPlaylistsAsync(int userId)
+
+    public async Task<IEnumerable<PlaylistResponseDto>> GetUserPlaylistsAsync(int userId)
     {
-        return await _tuneBoxContext.Playlists
+        var playlists = await _tuneBoxContext.Playlists
             .Where(p => p.UserId == userId)
             .Include(p => p.PlaylistSongs)
             .ThenInclude(ps => ps.Song)
+            .ThenInclude(s => s.Genres)
             .ToListAsync();
+
+        return await MapPlaylistsToResponses(playlists);
     }
+
 
     public async Task<bool> AddSongToPlaylistAsync(int playlistId, int songId)
     {
@@ -202,7 +221,7 @@ public class MusicService : IMusicService
         if (playlist == null || song == null)
             return false;
 
-        var playlistSong = new PlaylistSong { PlaylistId = playlistId, SongId = songId };
+        var playlistSong = new PlaylistSong { SongId = songId, Playlist = playlist };
         _tuneBoxContext.PlaylistSongs.Add(playlistSong);
         await _tuneBoxContext.SaveChangesAsync();
         return true;
@@ -211,13 +230,40 @@ public class MusicService : IMusicService
     public async Task<bool> RemoveSongFromPlaylistAsync(int playlistId, int songId)
     {
         var playlistSong = await _tuneBoxContext.PlaylistSongs
-            .FirstOrDefaultAsync(ps => ps.PlaylistId == playlistId && ps.SongId == songId);
+            .Include(playlistSong => playlistSong.Playlist)
+            .FirstOrDefaultAsync(playlistSong => playlistSong.Playlist.Id == playlistId && playlistSong.SongId == songId);
 
         if (playlistSong == null) return false;
 
         _tuneBoxContext.PlaylistSongs.Remove(playlistSong);
         await _tuneBoxContext.SaveChangesAsync();
         return true;
+    }
+
+    public async Task<PlaylistResponseDto?> UpdatePlaylistAsync(int playlistId, UpdatePlaylistRequestDto playlistDto)
+    {
+        // Find the playlist by its ID
+        var playlist = await _tuneBoxContext.Playlists
+            .Include(p => p.PlaylistSongs)
+            .ThenInclude(ps => ps.Song)
+            .ThenInclude(s => s.Genres)
+            .FirstOrDefaultAsync(p => p.Id == playlistId);
+
+        if (playlist == null)
+            return null; // Return null if the playlist does not exist
+
+        // Update playlist properties based on the provided DTO
+        if (!string.IsNullOrEmpty(playlistDto.Name))
+        {
+            playlist.Name = playlistDto.Name;
+        }
+
+        // Save the changes to the database
+        _tuneBoxContext.Playlists.Update(playlist);
+        await _tuneBoxContext.SaveChangesAsync();
+
+        // Return the updated playlist as a response DTO
+        return await MapPlaylistToResponse(playlist);
     }
 
     public async Task<bool> DeletePlaylistAsync(int playlistId)
@@ -259,4 +305,34 @@ public class MusicService : IMusicService
         }
         return songResponses;
     }
+
+    private async Task<PlaylistResponseDto> MapPlaylistToResponse(Playlist playlist)
+    {
+        var songs = await MapSongsToResponses(playlist.PlaylistSongs.Select(ps => ps.Song));
+
+        return new PlaylistResponseDto
+        {
+            Id = playlist.Id,
+            Name = playlist.Name,
+            CreatedAt = playlist.CreatedAt,
+            Songs = songs.ToList()
+        };
+    }
+
+    private async Task<ICollection<PlaylistResponseDto>> MapPlaylistsToResponses(IEnumerable<Playlist> playlists)
+    {
+        var playlistResponses = new List<PlaylistResponseDto>();
+        foreach (var playlist in playlists)
+        {
+            playlistResponses.Add(await MapPlaylistToResponse(playlist));
+        }
+        return playlistResponses;
+    }
+
+    public async Task<bool> IsPlaylistOwnerAsync(int playlistId, int userId)
+    {
+        return await _tuneBoxContext.Playlists
+        .AnyAsync(p => p.Id == playlistId && p.UserId == userId);
+    }
+
 }

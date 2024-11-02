@@ -17,19 +17,5 @@ public class TuneBoxDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-
-        // Конфигурация промежуточной таблицы PlaylistSong
-        modelBuilder.Entity<PlaylistSong>()
-            .HasKey(ps => new { ps.PlaylistId, ps.SongId });
-
-        modelBuilder.Entity<PlaylistSong>()
-            .HasOne(ps => ps.Playlist)
-            .WithMany(p => p.PlaylistSongs)
-            .HasForeignKey(ps => ps.PlaylistId);
-
-        modelBuilder.Entity<PlaylistSong>()
-            .HasOne(ps => ps.Song)
-            .WithMany(s => s.PlaylistSongs)
-            .HasForeignKey(ps => ps.SongId);
     }
 }

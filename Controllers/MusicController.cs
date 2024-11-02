@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TuneBox.Models;
 using TuneBox.Models.Dtos;
@@ -18,14 +19,36 @@ public class MusicController : ControllerBase
         _musicService = musicService;
     }
 
-    // Method to get all songs
+    // Methods open to public access (no authorization required)
     [HttpGet("songs")]
     public async Task<IEnumerable<SongResponseDto>> GetAllSongs(int skip, int count)
     {
         return await _musicService.GetAllSongsAsync(skip, count);
     }
 
-    // Method to add a new song with mp3 file
+    [HttpGet("songs/{songId}")]
+    public async Task<ActionResult<SongResponseDto>> GetSongById(int songId)
+    {
+        var song = await _musicService.GetSongByIdAsync(songId);
+        if (song == null) return NotFound();
+
+        return song;
+    }
+
+    [HttpGet("genres/{genreName}/songs")]
+    public async Task<ICollection<SongResponseDto>> GetSongsByGenre(string genreName)
+    {
+        return await _musicService.GetSongsByGenreAsync(genreName);
+    }
+
+    [HttpGet("genres")]
+    public async Task<IEnumerable<Genre>> GetAllGenres()
+    {
+        return await _musicService.GetAllGenresAsync();
+    }
+
+    // Admin-only methods
+    [Authorize(Policy = "AdminPolicy")]
     [HttpPost("songs")]
     [Consumes("multipart/form-data")]
     public async Task<IActionResult> AddSong([FromForm] AddSongRequestDto song, IFormFile mp3File)
@@ -39,17 +62,7 @@ public class MusicController : ControllerBase
         return Ok(addedSong);
     }
 
-    // Method to get song details by ID
-    [HttpGet("songs/{songId}")]
-    public async Task<ActionResult<SongResponseDto>> GetSongById(int songId)
-    {
-        var song = await _musicService.GetSongByIdAsync(songId);
-        if (song == null) return NotFound();
-
-        return song;
-    }
-
-    // Method to delete a song by ID
+    [Authorize(Policy = "AdminPolicy")]
     [HttpDelete("songs/{songId}")]
     public async Task<IActionResult> DeleteSong(int songId)
     {
@@ -59,80 +72,11 @@ public class MusicController : ControllerBase
         return NoContent();
     }
 
-    // Method to get songs by genre
-    [HttpGet("genres/{genreName}/songs")]
-    public async Task<ICollection<SongResponseDto>> GetSongsByGenre(string genreName)
-    {
-        return await _musicService.GetSongsByGenreAsync(genreName);
-    }
-
-    // Method to get all genres
-    [HttpGet("genres")]
-    public async Task<IEnumerable<Genre>> GetAllGenres()
-    {
-        return await _musicService.GetAllGenresAsync();
-    }
-
-    // Method to delete a genre by ID
+    [Authorize(Policy = "AdminPolicy")]
     [HttpDelete("genres/{genreName}")]
     public async Task<IActionResult> DeleteGenre(string genreName)
     {
         var success = await _musicService.DeleteGenreAsync(genreName);
-        if (!success) return NotFound();
-
-        return NoContent();
-    }
-
-    // Method to create a new playlist
-    [HttpPost("playlists")]
-    public async Task<IActionResult> CreatePlaylist(AddPlaylistRequestDto playlist)
-    {
-        var createdPlaylist = await _musicService.CreatePlaylistAsync(playlist);
-        return Ok(createdPlaylist);
-    }
-
-    // Method to get a playlist by ID
-    [HttpGet("playlists/{playlistId}")]
-    public async Task<ActionResult<Playlist>> GetPlaylistById(int playlistId)
-    {
-        var playlist = await _musicService.GetPlaylistByIdAsync(playlistId);
-        if (playlist == null) return NotFound();
-
-        return playlist;
-    }
-
-    // Method to get user playlists
-    [HttpGet("users/{userId}/playlists")]
-    public async Task<IEnumerable<Playlist>> GetUserPlaylists(int userId)
-    {
-        return await _musicService.GetUserPlaylistsAsync(userId);
-    }
-
-    // Method to add a song to a playlist
-    [HttpPost("playlists/{playlistId}/songs/{songId}")]
-    public async Task<IActionResult> AddSongToPlaylist(int playlistId, int songId)
-    {
-        var success = await _musicService.AddSongToPlaylistAsync(playlistId, songId);
-        if (!success) return NotFound();
-
-        return NoContent();
-    }
-
-    // Method to remove a song from a playlist
-    [HttpDelete("playlists/{playlistId}/songs/{songId}")]
-    public async Task<IActionResult> RemoveSongFromPlaylist(int playlistId, int songId)
-    {
-        var success = await _musicService.RemoveSongFromPlaylistAsync(playlistId, songId);
-        if (!success) return NotFound();
-
-        return NoContent();
-    }
-
-    // Method to delete a playlist by ID
-    [HttpDelete("playlists/{playlistId}")]
-    public async Task<IActionResult> DeletePlaylist(int playlistId)
-    {
-        var success = await _musicService.DeletePlaylistAsync(playlistId);
         if (!success) return NotFound();
 
         return NoContent();

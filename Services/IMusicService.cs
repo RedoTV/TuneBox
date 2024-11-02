@@ -17,10 +17,13 @@ public interface IMusicService
     Task<IEnumerable<Genre>> GetAllGenresAsync();
     Task<bool> DeleteGenreAsync(string genreName);
 
-    Task<Playlist> CreatePlaylistAsync(AddPlaylistRequestDto playlistDto);
-    Task<Playlist?> GetPlaylistByIdAsync(int playlistId);
-    Task<IEnumerable<Playlist>> GetUserPlaylistsAsync(int userId);
+    Task<Playlist?> CreatePlaylistAsync(AddPlaylistRequestDto playlistDto);
+    Task<PlaylistResponseDto?> GetPlaylistByIdAsync(int playlistId);
+    Task<IEnumerable<PlaylistResponseDto>> GetUserPlaylistsAsync(int userId);
     Task<bool> AddSongToPlaylistAsync(int playlistId, int songId);
     Task<bool> RemoveSongFromPlaylistAsync(int playlistId, int songId);
+    Task<PlaylistResponseDto?> UpdatePlaylistAsync(int playlistId, UpdatePlaylistRequestDto playlistDto);
     Task<bool> DeletePlaylistAsync(int playlistId);
+    Task<bool> IsPlaylistOwnerAsync(int playlistId, int userId);
+
 }

@@ -1,8 +1,11 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace TuneBox.Models;
 
 public class PlaylistSong
 {
-    public int PlaylistId { get; set; }
+    [Key]
+    public int Id { get; set; }
     public Playlist Playlist { get; set; } = null!;
 
     public int SongId { get; set; }

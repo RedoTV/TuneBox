@@ -33,6 +33,7 @@ public class AuthService(UsersDbContext _usersDbContext, IMapper _mapper, IConfi
         if (!verifyResult)
             throw new VerificationException("password is incorrect");
 
+        Console.WriteLine($"USER ID: {foundedUser.Id}");
         string token = GenerateToken(foundedUser);
         return token;
     }
@@ -68,8 +69,9 @@ public class AuthService(UsersDbContext _usersDbContext, IMapper _mapper, IConfi
         await _usersDbContext.Users.AddAsync(mappedUser);
         await _usersDbContext.SaveChangesAsync();
 
+        User userInDb = await _usersDbContext.Users.Where(u => u.Email == mappedUser.Email).FirstAsync();
         //generate jwt token after saving a new user to DB
-        string token = GenerateToken(mappedUser);
+        string token = GenerateToken(userInDb);
         return token;
     }
 
@@ -98,6 +100,7 @@ public class AuthService(UsersDbContext _usersDbContext, IMapper _mapper, IConfi
     {
         List<Claim> claimsForToken =
         [
+            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
             new Claim(ClaimTypes.Email, user.Email),
             new Claim(ClaimTypes.Role, user.Role)
         ];
