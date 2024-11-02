@@ -199,6 +199,30 @@ public class MusicService : IMusicService
         return await MapPlaylistToResponse(playlist);
     }
 
+    public async Task<IEnumerable<PlaylistResponseDto>> SearchPlaylistsByNameAsync(string name)
+    {
+        var playlists = await _tuneBoxContext.Playlists
+            .Where(p => p.Name.Contains(name))
+            .Include(p => p.PlaylistSongs)
+            .ThenInclude(ps => ps.Song)
+            .ThenInclude(s => s.Genres)
+            .ToListAsync();
+
+        return await MapPlaylistsToResponses(playlists);
+    }
+
+
+    public async Task<IEnumerable<PlaylistResponseDto>> GetAllPlaylistsAsync(int limit)
+    {
+        var playlists = await _tuneBoxContext.Playlists
+            .Include(p => p.PlaylistSongs)
+            .ThenInclude(ps => ps.Song)
+            .ThenInclude(s => s.Genres)
+            .Take(limit) // Limit the number of playlists returned
+            .ToListAsync();
+
+        return await MapPlaylistsToResponses(playlists);
+    }
 
     public async Task<IEnumerable<PlaylistResponseDto>> GetUserPlaylistsAsync(int userId)
     {

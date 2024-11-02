@@ -22,8 +22,8 @@ public class UsersController : ControllerBase
     {
         try
         {
-            string token = await AuthService.Register(user);
-            return Ok(token);
+            var registerResponse = await AuthService.Register(user);
+            return Ok(registerResponse);
         }
         catch (Exception exc)
         {
@@ -37,8 +37,8 @@ public class UsersController : ControllerBase
     {
         try
         {
-            string token = await AuthService.SignIn(user);
-            return Ok(token);
+            var signInResponse = await AuthService.SignIn(user);
+            return Ok(signInResponse);
         }
         catch (Exception exc)
         {

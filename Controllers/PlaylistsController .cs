@@ -41,6 +41,20 @@ public class PlaylistsController : ControllerBase
         return Ok(playlist);
     }
 
+    [HttpGet]
+    public async Task<IActionResult> GetAllPlaylists(int limit = 10) // Default limit to 10
+    {
+        var playlists = await _musicService.GetAllPlaylistsAsync(limit);
+        return Ok(playlists);
+    }
+
+    [HttpGet("search")]
+    public async Task<IActionResult> SearchPlaylists(string name)
+    {
+        var playlists = await _musicService.SearchPlaylistsByNameAsync(name);
+        return Ok(playlists);
+    }
+
     [Authorize]
     [HttpPut("{playlistId}")]
     public async Task<IActionResult> UpdatePlaylist(int playlistId, [FromBody] UpdatePlaylistRequestDto playlistDto)

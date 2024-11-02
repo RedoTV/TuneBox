@@ -1,7 +1,4 @@
 /* music.module.css */
-body {
-  margin: 0;
-}
 .musicContainer {
   display: flex;
   flex-direction: column;

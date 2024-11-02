@@ -19,6 +19,8 @@ public interface IMusicService
 
     Task<Playlist?> CreatePlaylistAsync(AddPlaylistRequestDto playlistDto);
     Task<PlaylistResponseDto?> GetPlaylistByIdAsync(int playlistId);
+    Task<IEnumerable<PlaylistResponseDto>> GetAllPlaylistsAsync(int limit);
+    Task<IEnumerable<PlaylistResponseDto>> SearchPlaylistsByNameAsync(string name);
     Task<IEnumerable<PlaylistResponseDto>> GetUserPlaylistsAsync(int userId);
     Task<bool> AddSongToPlaylistAsync(int playlistId, int songId);
     Task<bool> RemoveSongFromPlaylistAsync(int playlistId, int songId);

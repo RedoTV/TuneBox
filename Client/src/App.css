@@ -1,0 +1,117 @@
+body {
+  margin: 0;
+}
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px; /* Increased padding for a more spacious look */
+  background-color: #282c34;
+  color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+}
+
+.app-header h1 {
+  font-size: 24px; /* Increased font size for the title */
+  margin-top: auto;
+  margin-bottom: auto;
+  cursor: pointer;
+  transition: color 0.3s; /* Smooth transition for title hover effect */
+  color: white;
+}
+
+.app-header h1:hover {
+  color: #61dafb; /* Change color on hover */
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  margin: 0 15px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: white; /* Default link color */
+  padding: 10px 15px; /* Add padding for better click area */
+  border-radius: 5px; /* Round corners for links */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effects */
+}
+
+nav ul li a:hover {
+  background-color: #61dafb; /* Light blue background on hover */
+  color: #282c34; /* Dark text on hover */
+}
+
+nav ul li a.active {
+  background-color: #21a1f1; /* Background for the active link */
+  color: white; /* Keep text white for active link */
+}
+
+.user-menu {
+  position: relative;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #61dafb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #282c34;
+  font-weight: bold;
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.user-avatar:hover {
+  background-color: #21a1f1; /* Darker blue on hover */
+}
+
+.dropdown-menu {
+  position: absolute;
+  right: 0;
+  top: 50px;
+  background-color: white;
+  color: #282c34;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  min-width: 150px; /* Ensure dropdown has a minimum width */
+}
+
+.dropdown-item {
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.dropdown-item:hover {
+  background-color: #f0f0f0; /* Light background on hover */
+}
+
+/* Additional styles for mobile responsiveness */
+@media (max-width: 600px) {
+  .app-header {
+    flex-direction: column;
+    align-items: flex-start; /* Align items to start for mobile */
+  }
+
+  nav ul {
+    flex-direction: column; /* Stack navigation items on small screens */
+    width: 100%; /* Full width for the nav */
+  }
+
+  nav ul li {
+    margin: 10px 0; /* Margin between items */
+  }
+}

@@ -5,7 +5,7 @@ namespace TuneBox.Services;
 
 public interface IAuthService
 {
-    public Task<string> SignIn(UserSignInDto user);
-    public Task<string> Register(UserRegisterDto user);
-    public string GenerateToken(User user);
+    Task<AuthResponseDto> SignIn(UserSignInDto user);
+    Task<AuthResponseDto> Register(UserRegisterDto user);
+    string GenerateToken(User user);
 }

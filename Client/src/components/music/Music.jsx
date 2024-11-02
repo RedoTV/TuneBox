@@ -42,7 +42,7 @@ export default function Music() {
 
   return (
     <div className={styles.musicContainer}>
-      <h1 className={styles.title}>Music Library</h1>
+      <h1 className={styles.title}>Библиотека песен</h1>
       <ul className={styles.trackContainer}>
         {tracks.map((track) => (
           <Track
