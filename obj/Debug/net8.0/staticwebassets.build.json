@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Zqby/gLnP2URd3UnYfc2Gv3Wai5nFgbqa69NXxpcnjw=",
+  "Hash": "jzTklnMzl9BYz5VIr6/LdbggclfYoJuOyTzcGPHMWVs=",
   "Source": "TuneBox",
   "BasePath": "_content/TuneBox",
   "Mode": "Default",
@@ -17,12 +17,12 @@
   ],
   "Assets": [
     {
-      "Identity": "C:\\Projects\\TuneBox\\wwwroot\\assets\\index-BqSI2tzO.js",
+      "Identity": "C:\\Projects\\TuneBox\\wwwroot\\assets\\index-BwSxwqyB.css",
       "SourceId": "TuneBox",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Projects\\TuneBox\\wwwroot\\",
       "BasePath": "_content/TuneBox",
-      "RelativePath": "assets/index-BqSI2tzO.js",
+      "RelativePath": "assets/index-BwSxwqyB.css",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -33,15 +33,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\index-BqSI2tzO.js"
+      "OriginalItemSpec": "wwwroot\\assets\\index-BwSxwqyB.css"
     },
     {
-      "Identity": "C:\\Projects\\TuneBox\\wwwroot\\assets\\index-Btjl-mzt.css",
+      "Identity": "C:\\Projects\\TuneBox\\wwwroot\\assets\\index-CmPnv8JB.js",
       "SourceId": "TuneBox",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Projects\\TuneBox\\wwwroot\\",
       "BasePath": "_content/TuneBox",
-      "RelativePath": "assets/index-Btjl-mzt.css",
+      "RelativePath": "assets/index-CmPnv8JB.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -52,7 +52,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\index-Btjl-mzt.css"
+      "OriginalItemSpec": "wwwroot\\assets\\index-CmPnv8JB.js"
     },
     {
       "Identity": "C:\\Projects\\TuneBox\\wwwroot\\index.html",
