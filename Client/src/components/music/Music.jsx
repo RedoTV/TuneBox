@@ -1,9 +1,8 @@
 // Music.js
 import { useEffect, useState } from 'react';
-import { getAllMusic } from '../../services/music_service';
+import { getAllMusic } from '../../services/api_service';
 import Track from '../track/Track';
 import AudioPlayer from '../audioPlayer/AudioPlayer';
-import styles from './music.module.css';
 
 export default function Music() {
   const [tracks, setTracks] = useState([]);
@@ -26,7 +25,7 @@ export default function Music() {
     if (currentTrackIndex < tracks.length - 1) {
       setCurrentTrackIndex(currentTrackIndex + 1);
     } else {
-      setCurrentTrackIndex(0); // Зациклить на первом треке
+      setCurrentTrackIndex(0); // Loop back to the first track
     }
   };
 
@@ -34,16 +33,16 @@ export default function Music() {
     if (currentTrackIndex > 0) {
       setCurrentTrackIndex(currentTrackIndex - 1);
     } else {
-      setCurrentTrackIndex(tracks.length - 1); // Зациклить на последнем треке
+      setCurrentTrackIndex(tracks.length - 1); // Loop to the last track
     }
   };
 
   const currentTrack = currentTrackIndex !== null ? tracks[currentTrackIndex] : null;
 
   return (
-    <div className={styles.musicContainer}>
-      <h1 className={styles.title}>Библиотека песен</h1>
-      <ul className={styles.trackContainer}>
+    <div className="flex flex-col items-center p-5 bg-white text-gray-800 min-h-screen">
+      <h1 className="text-3xl font-semibold mb-5 text-center">Библиотека песен</h1>
+      <ul className="flex flex-wrap gap-4 justify-center p-0 list-none">
         {tracks.map((track) => (
           <Track
             track={track}

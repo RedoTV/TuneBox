@@ -1,7 +1,28 @@
 import axios from "axios";
-
 // Base URL for the API
 const API_URL = "https://localhost:7156/api";
+
+export async function getAllMusic(skip = 0, count = 10) {
+  try {
+      const response = await axios.get(`${API_URL}/Music/songs?skip=${skip}&count=${count}`);
+      return response.data;
+  } catch (error) {
+      console.error("Error fetching music:", error);
+      throw error;
+  }
+}
+
+export async function searchSongs(searchTerm) {
+  try {
+    const response = await axios.get(`${API_URL}/Music/songs/search`, {
+      params: { searchTerm },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error searching songs:", error);
+    throw error;
+  }
+}
 
 // Playlist Services
 export async function createPlaylist(name, token) {
@@ -22,6 +43,25 @@ export async function createPlaylist(name, token) {
     }
 }
 
+export async function addSongToPlaylist(playlistId, songId, token) {
+  try {
+      const response = await axios.post(
+          `${API_URL}/Playlists/${playlistId}/songs/${songId}`,
+          {}, // No request body required
+          {
+              headers: {
+                  Authorization: `Bearer ${token}`,
+              },
+          }
+      );
+      return response.data;
+  } catch (error) {
+      console.error("Error adding song to playlist:", error);
+      throw error;
+  }
+}
+
+
 export async function getPlaylist(id) {
   try {
     const response = await axios.get(`${API_URL}/Playlists/${id}`);
@@ -33,7 +73,6 @@ export async function getPlaylist(id) {
 }
 
 // User Services
-
 export async function registerUser(name, email, password) {
   try {
     const response = await axios.post(`${API_URL}/Users/Register`, { name, email, password });

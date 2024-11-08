@@ -7,6 +7,7 @@ public class TuneBoxDbContext : DbContext
 {
     public TuneBoxDbContext(DbContextOptions<TuneBoxDbContext> options) : base(options)
     {
+        Database.EnsureCreated();
     }
 
     public DbSet<Genre> Genres { get; set; }

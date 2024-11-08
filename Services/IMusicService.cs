@@ -28,4 +28,6 @@ public interface IMusicService
     Task<bool> DeletePlaylistAsync(int playlistId);
     Task<bool> IsPlaylistOwnerAsync(int playlistId, int userId);
 
+    // Новый метод для поиска песен по названию и автору
+    Task<IEnumerable<SongResponseDto>> SearchSongsByNameOrAuthorAsync(string searchTerm);
 }

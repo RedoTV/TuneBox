@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchPlaylists } from '../../services/api_service';
-import './Playlists.css';
 
 export default function Playlists() {
     const [playlists, setPlaylists] = useState([]);
@@ -24,14 +23,18 @@ export default function Playlists() {
     };
 
     return (
-        <div className="playlists-container">
-            <h2 className="title">Плейлисты</h2>
-            <ul className="playlists-list">
+        <div className="flex flex-col items-center p-5 min-h-screen">
+            <h2 className="text-3xl font-semibold text-gray-800 mb-6">Плейлисты</h2>
+            <ul className="flex flex-wrap gap-6 justify-center">
                 {playlists.map((playlist) => (
-                    <li key={playlist.id} className="playlist-item" onClick={() => handlePlaylistClick(playlist.id)}>
-                        <div className="playlist-info">
-                            <h3>{playlist.name}</h3>
-                            <p>Создан: {new Date(playlist.createdAt).toLocaleDateString()}</p>
+                    <li
+                        key={playlist.id}
+                        className="bg-white border border-gray-300 rounded-lg p-5 shadow-sm transition-transform transform hover:scale-105 cursor-pointer"
+                        onClick={() => handlePlaylistClick(playlist.id)}
+                    >
+                        <div className="flex flex-col items-center">
+                            <h3 className="text-xl font-semibold text-indigo-600">{playlist.name}</h3>
+                            <p className="text-gray-500 mt-1">Создан: {new Date(playlist.createdAt).toLocaleDateString()}</p>
                         </div>
                     </li>
                 ))}

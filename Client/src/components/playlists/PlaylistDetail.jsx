@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import { getPlaylist } from '../../services/api_service';
 import Track from '../track/Track';
 import AudioPlayer from '../audioPlayer/AudioPlayer';
-import styles from './playlistDetail.module.css';
 
 export default function PlaylistDetail() {
     const { playlistId } = useParams();
@@ -28,30 +27,22 @@ export default function PlaylistDetail() {
     };
 
     const handleNext = () => {
-        if (currentTrackIndex < playlist.songs.length - 1) {
-            setCurrentTrackIndex(currentTrackIndex + 1);
-        } else {
-            setCurrentTrackIndex(0);
-        }
+        setCurrentTrackIndex((currentTrackIndex + 1) % playlist.songs.length);
     };
 
     const handlePrev = () => {
-        if (currentTrackIndex > 0) {
-            setCurrentTrackIndex(currentTrackIndex - 1);
-        } else {
-            setCurrentTrackIndex(playlist.songs.length - 1);
-        }
+        setCurrentTrackIndex((currentTrackIndex - 1 + playlist.songs.length) % playlist.songs.length);
     };
 
     const currentTrack = currentTrackIndex !== null ? playlist.songs[currentTrackIndex] : null;
 
     return (
-        <div className={styles.playlistDetailContainer}>
+        <div className="flex flex-col items-center p-5 bg-gray-100 min-h-screen">
             {playlist ? (
                 <>
-                    <h1>{playlist.name}</h1>
-                    <h3>(Создан: {new Date(playlist.createdAt).toLocaleDateString()})</h3>
-                    <ul className={styles.trackList}>
+                    <h1 className="text-3xl font-semibold text-gray-800">{playlist.name}</h1>
+                    <h3 className="text-lg text-gray-500 mb-4">Создан: {new Date(playlist.createdAt).toLocaleDateString()}</h3>
+                    <ul className="w-full max-w-2xl space-y-3">
                         {playlist.songs.map((track) => (
                             <Track
                                 track={track}
@@ -67,7 +58,7 @@ export default function PlaylistDetail() {
                     />
                 </>
             ) : (
-                <p>Loading playlist...</p>
+                <p className="text-gray-600">Loading playlist...</p>
             )}
         </div>
     );

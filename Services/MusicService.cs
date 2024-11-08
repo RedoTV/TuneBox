@@ -125,6 +125,17 @@ namespace TuneBox.Services
             return true;
         }
 
+        public async Task<IEnumerable<SongResponseDto>> SearchSongsByNameOrAuthorAsync(string searchTerm)
+        {
+            var songs = await _tuneBoxContext.Songs
+                .Include(s => s.Genres)
+                .Where(s => s.Name.Contains(searchTerm) || s.Author.Contains(searchTerm))
+                .ToListAsync();
+
+            // Преобразуем коллекцию песен в DTO
+            return _mapper.Map<IEnumerable<SongResponseDto>>(songs);
+        }
+
         // Методы для работы с жанрами
         public async Task<Genre> AddGenreAsync(Genre genre)
         {

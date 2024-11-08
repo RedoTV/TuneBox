@@ -62,6 +62,13 @@ public class MusicController : ControllerBase
         return Ok(addedSong);
     }
 
+    [HttpGet("songs/search")]
+    public async Task<IEnumerable<SongResponseDto>> SearchSongs([FromQuery] string searchTerm)
+    {
+        return await _musicService.SearchSongsByNameOrAuthorAsync(searchTerm);
+    }
+
+
     [Authorize(Policy = "AdminPolicy")]
     [HttpDelete("songs/{songId}")]
     public async Task<IActionResult> DeleteSong(int songId)
