@@ -4241,11 +4241,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Projects\\TuneBox\\TuneBox.csproj",
+      "projectUniqueName": "C:\\Projects\\TuneBox\\TuneBox.csproj",
       "projectName": "TuneBox",
-      "projectPath": "c:\\Projects\\TuneBox\\TuneBox.csproj",
+      "projectPath": "C:\\Projects\\TuneBox\\TuneBox.csproj",
       "packagesPath": "C:\\Users\\Вадим\\.nuget\\packages\\",
-      "outputPath": "c:\\Projects\\TuneBox\\obj\\",
+      "outputPath": "C:\\Projects\\TuneBox\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Вадим\\AppData\\Roaming\\NuGet\\NuGet.Config"
