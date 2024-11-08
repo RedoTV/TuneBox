@@ -1,4 +1,5 @@
 using System.Text;
+using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.FileProviders;
@@ -100,8 +101,9 @@ builder.Services.AddTransient<IMusicService>(provider =>
     var tuneBoxContext = provider.GetRequiredService<TuneBoxDbContext>();
     var fileStoragePath = Path.Combine(builder.Environment.ContentRootPath, "audios");
     var httpContextAccessor = provider.GetRequiredService<IHttpContextAccessor>();
+    var mapper = provider.GetRequiredService<IMapper>(); // Получаем IMapper
 
-    return new MusicService(tuneBoxContext, fileStoragePath, httpContextAccessor);
+    return new MusicService(tuneBoxContext, fileStoragePath, httpContextAccessor, mapper);
 });
 
 var app = builder.Build();
