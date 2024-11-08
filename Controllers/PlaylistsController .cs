@@ -65,10 +65,11 @@ public class PlaylistsController : ControllerBase
 
         var userId = int.Parse(userIdClaim);
 
-        if (!await _musicService.IsPlaylistOwnerAsync(userId, playlistId))
+        if (!await _musicService.IsPlaylistOwnerAsync(playlistId, userId))
         {
             return Forbid();
         }
+
 
         var updatedPlaylist = await _musicService.UpdatePlaylistAsync(playlistId, playlistDto);
         if (updatedPlaylist == null)
@@ -87,10 +88,11 @@ public class PlaylistsController : ControllerBase
 
         var userId = int.Parse(userIdClaim);
 
-        if (!await _musicService.IsPlaylistOwnerAsync(userId, playlistId))
+        if (!await _musicService.IsPlaylistOwnerAsync(playlistId, userId))
         {
             return Forbid();
         }
+
 
         var success = await _musicService.DeletePlaylistAsync(playlistId);
         if (!success)
@@ -109,7 +111,7 @@ public class PlaylistsController : ControllerBase
 
         var userId = int.Parse(userIdClaim);
 
-        if (!await _musicService.IsPlaylistOwnerAsync(userId, playlistId))
+        if (!await _musicService.IsPlaylistOwnerAsync(playlistId, userId))
         {
             return Forbid();
         }
@@ -131,7 +133,7 @@ public class PlaylistsController : ControllerBase
 
         var userId = int.Parse(userIdClaim);
 
-        if (!await _musicService.IsPlaylistOwnerAsync(userId, playlistId))
+        if (!await _musicService.IsPlaylistOwnerAsync(playlistId, userId))
         {
             return Forbid();
         }

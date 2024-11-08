@@ -89,7 +89,7 @@ builder.Services.AddAuthorization(options =>
 });
 
 builder.Services.AddAutoMapper(typeof(UserProfile));
-builder.Services.AddHttpContextAccessor();
+builder.Services.AddHttpContextAccessor ();
 
 builder.Services.AddSqlite<UsersDbContext>(usersDbConnection);
 builder.Services.AddSqlite<TuneBoxDbContext>(tuneBoxDbConnection);
