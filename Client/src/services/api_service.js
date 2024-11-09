@@ -72,6 +72,38 @@ export async function getPlaylist(id) {
   }
 }
 
+export async function updatePlaylist(playlistId, name, token) {
+  try {
+      const response = await axios.put(
+          `${API_URL}/Playlists/${playlistId}`,
+          { name }, // Request body with updated name
+          {
+              headers: {
+                  Authorization: `Bearer ${token}`, // Authorization header with JWT token
+              },
+          }
+      );
+      return response.data; // Returns updated playlist data
+  } catch (error) {
+      console.error("Error updating playlist:", error);
+      throw error;
+  }
+}
+
+export async function deletePlaylist(playlistId, token) {
+  try {
+      const response = await axios.delete(`${API_URL}/Playlists/${playlistId}`, {
+          headers: {
+              Authorization: `Bearer ${token}`, // Authorization header with JWT token
+          },
+      });
+      return response.data; // Returns response data if needed
+  } catch (error) {
+      console.error("Error deleting playlist:", error);
+      throw error; // Rethrow for handling in the component
+  }
+}
+
 // User Services
 export async function registerUser(name, email, password) {
   try {
