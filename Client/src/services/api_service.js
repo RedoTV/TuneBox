@@ -104,6 +104,23 @@ export async function deletePlaylist(playlistId, token) {
   }
 }
 
+export async function deleteSongFromPlaylist(playlistId, songId, token) {
+  try {
+    const response = await axios.delete(
+      `${API_URL}/Playlists/${playlistId}/songs/${songId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`, // Добавляем токен авторизации в заголовок
+        },
+      }
+    );
+    return response.data; // Возвращаем ответ, если он нужен для дальнейшей обработки
+  } catch (error) {
+    console.error("Error deleting song from playlist:", error);
+    throw error; // Пробрасываем ошибку, чтобы компонент мог с ней работать
+  }
+}
+
 // User Services
 export async function registerUser(name, email, password) {
   try {

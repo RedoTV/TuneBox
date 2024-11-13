@@ -1,7 +1,10 @@
 export default function Track({ track, onPlay }) {
   return (
     <li
-      className="bg-white border border-gray-200 rounded-lg p-4 w-60 text-gray-800 cursor-pointer transition-transform transform hover:scale-105 hover:shadow-md shadow-sm"
+      className="
+      bg-white border border-gray-200 rounded-lg
+        p-4 w-60 min-h-44 text-gray-800 cursor-pointer transition-transform
+        transform hover:scale-105 hover:shadow-md shadow-sm"
       onClick={() => onPlay(track)}
     >
       <div className="relative">

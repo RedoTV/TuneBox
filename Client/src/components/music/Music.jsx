@@ -8,6 +8,7 @@ export default function Music() {
   const [filteredTracks, setFilteredTracks] = useState([]); // Отфильтрованные песни по поиску
   const [currentTrackIndex, setCurrentTrackIndex] = useState(null);
   const [searchTerm, setSearchTerm] = useState(''); // Состояние для поискового запроса
+  const [resetSearch, setResetSearch] = useState(); // Состояние для сброка запроса
 
   // Загружаем все песни при монтировании компонента
   useEffect(() => {
@@ -28,6 +29,7 @@ export default function Music() {
   const handleSearch = async () => {
     if (searchTerm.trim()) {
       try {
+        setResetSearch(1);
         const searchResults = await searchSongs(searchTerm);
         setFilteredTracks(searchResults); // Обновляем отфильтрованные песни
       } catch (error) {
@@ -37,6 +39,12 @@ export default function Music() {
       setFilteredTracks(tracks); // Если поисковый запрос пустой, показываем все песни
     }
   };
+
+  const resetSearchTerm = () => {
+    setFilteredTracks(tracks);
+    setSearchTerm("");
+    setResetSearch(0);
+  }
 
   const handlePlay = (track) => {
     const index = tracks.findIndex(t => t.id === track.id);
@@ -67,7 +75,7 @@ export default function Music() {
 
       {/* Панель для поиска */}
       <div className="bg-white border border-gray-300 rounded-lg p-4 mb-6 w-full max-w-lg flex flex-col items-center justify-between">
-        <div className="flex w-full mb-4 md:mb-0">
+        <div className="flex flex-wrap md:flex-nowrap w-full mb-4 md:mb-0">
           <input
             type="text"
             value={searchTerm}
@@ -75,17 +83,26 @@ export default function Music() {
             placeholder="Поиск по песням"
             className="border p-2 rounded-lg w-full"
           />
-          <button
-            onClick={handleSearch}
-            className="bg-indigo-500 text-white px-4 py-2 rounded-lg hover:bg-indigo-600 ml-2"
-          >
-            Поиск
-          </button>
+          <div className="flex gap-2 mt-2 md:mt-0 md:ml-2">
+            <button
+              onClick={handleSearch}
+              className="bg-indigo-500 text-white px-4 py-2 rounded-lg hover:bg-indigo-600"
+            >
+              Поиск
+            </button>
+            {resetSearch == 1 && <button
+              onClick={resetSearchTerm}
+              className="bg-orange-400 text-white px-4 py-2 rounded-lg hover:bg-orange-500"
+            >
+              Очистить
+            </button>}
+          </div>
+
         </div>
       </div>
 
       {/* Список песен, отфильтрованных по запросу */}
-      <ul className="flex flex-wrap gap-4 justify-center p-0 list-none">
+      <ul className="flex flex-wrap max-w-[1100px] gap-4 justify-center">
         {filteredTracks.map((track) => (
           <Track
             track={track}

@@ -1,7 +1,7 @@
-import Playlists from "../playlists/Playlists";
+import Music from "../music/Music";
 
 export default function Home() {
     return (<>
-        <Playlists />
+        <Music />
     </>)
 }

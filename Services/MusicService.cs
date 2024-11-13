@@ -129,7 +129,7 @@ namespace TuneBox.Services
         {
             var songs = await _tuneBoxContext.Songs
                 .Include(s => s.Genres)
-                .Where(s => s.Name.Contains(searchTerm) || s.Author.Contains(searchTerm))
+                .Where(s => EF.Functions.Like(s.Name, $"%{searchTerm}%") || EF.Functions.Like(s.Author, $"%{searchTerm}%"))
                 .ToListAsync();
 
             // Преобразуем коллекцию песен в DTO

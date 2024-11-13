@@ -19,7 +19,7 @@ function App() {
 
   return (
     <div>
-      <header className="relative  flex items-center justify-between bg-white py-2 text-neutral-500 shadow-md hover:text-neutral-700 focus:text-neutral-700 lg:flex-nowrap lg:justify-end lg:py-4">
+      <header className="relative flex items-center justify-between bg-white py-2 text-neutral-500 shadow-md hover:text-neutral-700 focus:text-neutral-700 lg:flex-nowrap lg:justify-end lg:py-4">
         <div className="flex w-full lg:max-w-[1000px] lg:mx-auto flex-wrap items-center justify-between px-10">
           {/* Brand Logo */}
           <div className="ms-2">

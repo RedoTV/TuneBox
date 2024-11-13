@@ -50,7 +50,6 @@ export default function SongSelector({ playlistId }) {
     const handleAddSong = async (songId) => {
         try {
             await addSongToPlaylist(playlistId, songId, user.token);
-            alert("Song added to playlist successfully!");
             setAddedSongs(prevSet => new Set(prevSet.add(songId)));
         } catch (error) {
             console.error("Error adding song to playlist:", error);
