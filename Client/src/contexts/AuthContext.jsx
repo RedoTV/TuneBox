@@ -15,6 +15,9 @@ export const AuthProvider = ({ children }) => {
     };
 
     const logout = () => {
+        if (localStorage.getItem('userData') == null)
+            return;
+
         setUser(null);
         localStorage.removeItem('userData');
     };

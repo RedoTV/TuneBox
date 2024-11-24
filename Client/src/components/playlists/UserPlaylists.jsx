@@ -168,7 +168,7 @@ export default function UserPlaylists() {
               }}
               className="mt-4 bg-green-500 text-white px-6 py-3 rounded-lg text-lg hover:bg-green-600"
             >
-              Добавить песню
+              Добавить песни
             </button>
 
             {/* Options Menu Toggle */}

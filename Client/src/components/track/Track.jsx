@@ -10,10 +10,10 @@ export default function Track({ track, onPlay }) {
       <div className="relative">
         <span className="text-xl text-indigo-500 absolute top-2 right-2">&#9658;</span>
       </div>
-      <h3 className="text-lg font-semibold text-indigo-600">{track.name}</h3>
-      <p className="text-sm text-gray-500 mt-1">Author: {track.author}</p>
-      <p className="text-sm text-gray-500">Genres: {track.genres.join(', ')}</p>
-      <p className="text-sm text-gray-400 mt-1">Added: {new Date(track.createdAt).toLocaleDateString()}</p>
+      <h3 className="text-lg font-semibold text-indigo-600 max-w-44">{track.name}</h3>
+      <p className="text-sm text-gray-500 mt-1">Исполнитель: {track.author}</p>
+      <p className="text-sm text-gray-500">Жанры: {track.genres.join(', ')}</p>
+      <p className="text-sm text-gray-400 mt-1">Дата добавления: {new Date(track.createdAt).toLocaleDateString()}</p>
     </li>
   );
 }

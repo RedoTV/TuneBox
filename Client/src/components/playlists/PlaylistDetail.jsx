@@ -22,6 +22,9 @@ export default function PlaylistDetail() {
                 const fetchedPlaylist = await getPlaylist(playlistId);
                 setPlaylist(fetchedPlaylist);
 
+                if (user.userId == null)
+                    return;
+
                 // Получаем все плейлисты пользователя
                 const playlistsData = await fetchUserPlaylists(user.userId);
 

@@ -21,7 +21,7 @@ public class MusicController : ControllerBase
 
     // Methods open to public access (no authorization required)
     [HttpGet("songs")]
-    public async Task<IEnumerable<SongResponseDto>> GetAllSongs(int skip, int count)
+    public async Task<IEnumerable<SongResponseDto>> GetAllSongs(int skip = 0, int count = 10)
     {
         return await _musicService.GetAllSongsAsync(skip, count);
     }

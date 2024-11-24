@@ -19,8 +19,15 @@ export default function SongSelector({ playlistId }) {
                 setLoading(true);
                 const songsData = await getAllMusic(skip, count);
 
+                // Применяем форматирование длительности для каждой песни
+                const formattedSongs = songsData.map(song => ({
+                    ...song,
+                    duration: formatDuration(song.duration), // Отформатированная длительность
+                }));
+
+
                 // Фильтруем песни, чтобы не добавлять уже добавленные
-                const filteredSongs = songsData.filter(song => !addedSongs.has(song.id));
+                const filteredSongs = formattedSongs.filter(song => !addedSongs.has(song.id));
 
                 // Убираем дублирующиеся песни по id
                 const uniqueSongs = Array.from(new Map(filteredSongs.map(song => [song.id, song])).values());
@@ -36,7 +43,7 @@ export default function SongSelector({ playlistId }) {
                 }
             } catch (error) {
                 console.error("Error fetching songs:", error);
-                setError("Failed to load songs");
+                setError("Ошибка при загрузке песен");
             } finally {
                 setLoading(false);
             }
@@ -47,13 +54,26 @@ export default function SongSelector({ playlistId }) {
         }
     }, [skip, isSearching, addedSongs]);
 
+    // Функция для форматирования длительности
+    const formatDuration = (duration) => {
+        const [hours, minutes, seconds] = duration.split(':');
+
+        // Добавляем ведущие нули, если нужно
+        const formattedHours = String(hours).padStart(2, '0');
+        const formattedMinutes = String(minutes).padStart(2, '0');
+        const formattedSeconds = String(seconds.split('.')[0]).padStart(2, '0'); // Обрезаем миллисекунды, если они есть
+
+        // Возвращаем отформатированную длительность в формате hh:mm:ss
+        return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+    };
+
     const handleAddSong = async (songId) => {
         try {
             await addSongToPlaylist(playlistId, songId, user.token);
             setAddedSongs(prevSet => new Set(prevSet.add(songId)));
         } catch (error) {
             console.error("Error adding song to playlist:", error);
-            setError("Failed to add song to playlist.");
+            setError("Ошибка во время добавления песни в плейлист.");
         }
     };
 
@@ -78,7 +98,7 @@ export default function SongSelector({ playlistId }) {
             setSongs(uniqueSearchResults);
         } catch (error) {
             console.error("Error searching songs:", error);
-            setError("Failed to search songs.");
+            setError("Ошибка при поиске песни.");
         } finally {
             setLoading(false);
         }
@@ -91,19 +111,19 @@ export default function SongSelector({ playlistId }) {
         setSkip(0);
     };
 
-    if (loading) return <p>Loading songs...</p>;
+    if (loading) return <p>Загрузка...</p>;
     if (error) return <p>{error}</p>;
 
     return (
         <div className="flex flex-col items-center p-6 bg-white border rounded-lg shadow-lg w-full mx-auto">
-            <h3 className="text-2xl font-semibold text-gray-800 mb-4 text-center">Select Songs to Add</h3>
+            <h3 className="text-2xl font-semibold text-gray-800 mb-4 text-center">Выберите песни</h3>
 
             <div className="flex flex-wrap w-full mb-4 gap-2">
                 <input
                     type="text"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    placeholder="Search for a song..."
+                    placeholder="Название песни"
                     className="flex-grow border border-gray-300 rounded px-4 py-2 text-lg"
                 />
                 <div className="flex gap-2 flex-wrap">
@@ -111,14 +131,14 @@ export default function SongSelector({ playlistId }) {
                         onClick={handleSearch}
                         className="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition text-lg"
                     >
-                        Search
+                        Поиск
                     </button>
                     {isSearching && (
                         <button
                             onClick={resetSearch}
                             className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition text-lg"
                         >
-                            Clear
+                            Очистить
                         </button>
                     )}
                 </div>
@@ -132,16 +152,16 @@ export default function SongSelector({ playlistId }) {
                     >
                         <div>
                             <p className="font-semibold text-lg">{song.name}</p>
-                            <p className="text-base text-gray-600">by {song.author}</p>
-                            <p className="text-sm text-gray-500">Duration: {song.duration}</p>
+                            <p className="text-base text-gray-600">Исполнитель: {song.author}</p>
+                            <p className="text-sm text-gray-500">Длительность: {song.duration}</p>
                         </div>
 
                         <button
                             onClick={() => handleAddSong(song.id)}
-                            className="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition text-lg w-full mt-4 sm:mt-0"
+                            className="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition text-lg w-full mt-4 sm:mt-2"
                             disabled={addedSongs.has(song.id)}
                         >
-                            {addedSongs.has(song.id) ? "Added" : "Add to Playlist"}
+                            {addedSongs.has(song.id) ? "Добавлено" : "Добавить в плейлист"}
                         </button>
                     </li>
                 ))}
@@ -152,7 +172,7 @@ export default function SongSelector({ playlistId }) {
                     onClick={loadMoreSongs}
                     className="mt-6 bg-gray-200 text-gray-700 px-4 py-2 rounded hover:bg-gray-300 transition text-lg"
                 >
-                    Load More
+                    Показать больше
                 </button>
             )}
         </div>
