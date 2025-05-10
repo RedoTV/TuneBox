@@ -101,7 +101,7 @@ export default function PlaylistDetail() {
                     />
                 </>
             ) : (
-                <p className="text-gray-600">Loading playlist...</p>
+                <p className="text-gray-600">Загрузка плейлиста...</p>
             )}
         </div>
     );

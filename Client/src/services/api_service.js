@@ -1,17 +1,19 @@
 import axios from "axios";
-// Base URL for the API
+// Базовый URL API
 const API_URL = "https://localhost:7156/api";
 
+// Получение списка музыки с пагинацией
 export async function getAllMusic(skip = 0, count = 10) {
   try {
       const response = await axios.get(`${API_URL}/Music/songs?skip=${skip}&count=${count}`);
       return response.data;
   } catch (error) {
-      console.error("Error fetching music:", error);
+      console.error("Ошибка при загрузке музыки:", error);
       throw error;
   }
 }
 
+// Поиск песен по ключевым словам
 export async function searchSongs(searchTerm) {
   try {
     const response = await axios.get(`${API_URL}/Music/songs/search`, {
@@ -19,12 +21,12 @@ export async function searchSongs(searchTerm) {
     });
     return response.data;
   } catch (error) {
-    console.error("Error searching songs:", error);
+    console.error("Ошибка поиска песен:", error);
     throw error;
   }
 }
 
-// Playlist Services
+// Сервисы для работы с плейлистами
 export async function createPlaylist(name, token) {
     try {
       const response = await axios.post(
@@ -32,22 +34,23 @@ export async function createPlaylist(name, token) {
         { name },
         {
           headers: {
-            Authorization: `Bearer ${token}`, // Set the authorization header
+            Authorization: `Bearer ${token}`, // Установка заголовка авторизации
           },
         }
       );
       return response.data;
     } catch (error) {
-      console.error("Error creating playlist:", error);
+      console.error("Ошибка создания плейлиста:", error);
       throw error;
     }
 }
 
+// Добавление песни в плейлист
 export async function addSongToPlaylist(playlistId, songId, token) {
   try {
       const response = await axios.post(
           `${API_URL}/Playlists/${playlistId}/songs/${songId}`,
-          {}, // No request body required
+          {}, // Тело запроса не требуется
           {
               headers: {
                   Authorization: `Bearer ${token}`,
@@ -56,92 +59,97 @@ export async function addSongToPlaylist(playlistId, songId, token) {
       );
       return response.data;
   } catch (error) {
-      console.error("Error adding song to playlist:", error);
+      console.error("Ошибка добавления песни в плейлист:", error);
       throw error;
   }
 }
 
-
+// Получение данных плейлиста
 export async function getPlaylist(id) {
   try {
     const response = await axios.get(`${API_URL}/Playlists/${id}`);
     return response.data;
   } catch (error) {
-    console.error("Error fetching playlist:", error);
+    console.error("Ошибка загрузки плейлиста:", error);
     throw error;
   }
 }
 
+// Обновление названия плейлиста
 export async function updatePlaylist(playlistId, name, token) {
   try {
       const response = await axios.put(
           `${API_URL}/Playlists/${playlistId}`,
-          { name }, // Request body with updated name
+          { name }, // Тело запроса с новым названием
           {
               headers: {
-                  Authorization: `Bearer ${token}`, // Authorization header with JWT token
+                  Authorization: `Bearer ${token}`, // JWT токен в заголовке
               },
           }
       );
-      return response.data; // Returns updated playlist data
+      return response.data; // Возвращает обновленные данные плейлиста
   } catch (error) {
-      console.error("Error updating playlist:", error);
+      console.error("Ошибка обновления плейлиста:", error);
       throw error;
   }
 }
 
+// Удаление плейлиста
 export async function deletePlaylist(playlistId, token) {
   try {
       const response = await axios.delete(`${API_URL}/Playlists/${playlistId}`, {
           headers: {
-              Authorization: `Bearer ${token}`, // Authorization header with JWT token
+              Authorization: `Bearer ${token}`, // JWT токен в заголовке
           },
       });
-      return response.data; // Returns response data if needed
+      return response.data;
   } catch (error) {
-      console.error("Error deleting playlist:", error);
-      throw error; // Rethrow for handling in the component
+      console.error("Ошибка удаления плейлиста:", error);
+      throw error;
   }
 }
 
+// Удаление песни из плейлиста
 export async function deleteSongFromPlaylist(playlistId, songId, token) {
   try {
     const response = await axios.delete(
       `${API_URL}/Playlists/${playlistId}/songs/${songId}`,
       {
         headers: {
-          Authorization: `Bearer ${token}`, // Добавляем токен авторизации в заголовок
+          Authorization: `Bearer ${token}`, // Добавляем токен авторизации
         },
       }
     );
-    return response.data; // Возвращаем ответ, если он нужен для дальнейшей обработки
+    return response.data;
   } catch (error) {
-    console.error("Error deleting song from playlist:", error);
-    throw error; // Пробрасываем ошибку, чтобы компонент мог с ней работать
+    console.error("Ошибка удаления песни из плейлиста:", error);
+    throw error;
   }
 }
 
-// User Services
+// Сервисы для работы с пользователями
 export async function registerUser(name, email, password) {
   try {
     const response = await axios.post(`${API_URL}/Users/Register`, { name, email, password });
-    return response.data; // This will return the JWT token
+    return response.data; // Возвращает JWT токен
   } catch (error) {
-    console.error("Error registering user:", error);
+    console.error("Ошибка регистрации пользователя:", error);
     throw error;
   }
 }
 
+// Авторизация пользователя
 export async function signInUser(name, password) {
   try {
     const response = await axios.post(`${API_URL}/Users/SignIn`, { name, password });
-    return response.data; // This will return the JWT token
+    return response.data; // Возвращает JWT токен
   } catch (error) {
-    console.error("Error signing in user:", error);
+    console.error("Ошибка входа пользователя:", error);
     throw error;
   }
 }
 
+// Получение списка плейлистов
 export const fetchPlaylists = async (limit) => {
     try {
         const response = await axios.get(`${API_URL}/Playlists?limit=${limit}`, {
@@ -149,13 +157,14 @@ export const fetchPlaylists = async (limit) => {
                 'Content-Type': 'application/json',
             },
         });
-        return response.data; // Return the data from the response
+        return response.data;
     } catch (error) {
-        console.error("Error fetching playlists:", error);
-        throw error; // Rethrow the error for handling in the component
+        console.error("Ошибка загрузки плейлистов:", error);
+        throw error;
     }
 };
 
+// Получение плейлистов конкретного пользователя
 export const fetchUserPlaylists = async (userId) => {
     try {
         const response = await axios.get(`${API_URL}/Playlists/users/${userId}/playlists`, {
@@ -163,9 +172,9 @@ export const fetchUserPlaylists = async (userId) => {
                 'Content-Type': 'application/json',
             },
         });
-        return response.data; // Return the data from the response
+        return response.data;
     } catch (error) {
-        console.error("Error fetching user playlists:", error);
-        throw error; // Rethrow the error for handling in the component
+        console.error("Ошибка загрузки пользовательских плейлистов:", error);
+        throw error;
     }
 };

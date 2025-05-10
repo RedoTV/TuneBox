@@ -26,11 +26,11 @@ export const router = createBrowserRouter([
         element: <Playlists />,
       },
       {
-        path: "playlists/:playlistId", // Route for playlist details
+        path: "playlists/:playlistId",
         element: <PlaylistDetail />,
       },
       {
-        path: "user/playlists", // Route for user playlists
+        path: "user/playlists",
         element: <UserPlaylists />,
       },
       {

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TuneBox")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9b4916305fdae18a0351b0d182247d8d3f547c9e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a6bd9d76619e4867ac20b09ecebc4ca68889b459")]
 [assembly: System.Reflection.AssemblyProductAttribute("TuneBox")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TuneBox")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

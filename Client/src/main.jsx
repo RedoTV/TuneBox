@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import './index.css';
 import { router } from './routes.jsx';
 import { RouterProvider } from 'react-router-dom';
-import { AuthProvider } from './contexts/AuthContext.jsx'; // Import the AuthProvider
+import { AuthProvider } from './contexts/AuthContext.jsx'; // импорт AuthProvider для авторизации
 
 const root = createRoot(document.getElementById('root'));
 root.render(

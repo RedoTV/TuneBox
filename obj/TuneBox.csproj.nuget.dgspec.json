@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\vadim\\projects\\TuneBox\\TuneBox.csproj": {}
+    "c:\\Users\\vadim\\projects\\TuneBox\\TuneBox.csproj": {}
   },
   "projects": {
-    "C:\\Users\\vadim\\projects\\TuneBox\\TuneBox.csproj": {
+    "c:\\Users\\vadim\\projects\\TuneBox\\TuneBox.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\vadim\\projects\\TuneBox\\TuneBox.csproj",
+        "projectUniqueName": "c:\\Users\\vadim\\projects\\TuneBox\\TuneBox.csproj",
         "projectName": "TuneBox",
-        "projectPath": "C:\\Users\\vadim\\projects\\TuneBox\\TuneBox.csproj",
+        "projectPath": "c:\\Users\\vadim\\projects\\TuneBox\\TuneBox.csproj",
         "packagesPath": "C:\\Users\\vadim\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\vadim\\projects\\TuneBox\\obj\\",
+        "outputPath": "c:\\Users\\vadim\\projects\\TuneBox\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

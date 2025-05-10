@@ -8,9 +8,9 @@ export default function Music() {
   const [filteredTracks, setFilteredTracks] = useState([]); // Отфильтрованные песни по поиску
   const [currentTrackIndex, setCurrentTrackIndex] = useState(null);
   const [searchTerm, setSearchTerm] = useState(''); // Состояние для поискового запроса
-  const [resetSearch, setResetSearch] = useState(); // Состояние для сброка запроса
+  const [resetSearch, setResetSearch] = useState(); // Флаг для сброса поиска (1 - активен, 0 - сброшен)
 
-  // Загружаем все песни при монтировании компонента
+  // Загрузка всех песен при первом рендере
   useEffect(() => {
     const fetchAllMusic = async () => {
       const musicData = await getAllMusic();
@@ -20,50 +20,54 @@ export default function Music() {
     fetchAllMusic();
   }, []);
 
-  // Обработчик для изменения поискового запроса
+  // Обработчик изменения поисковой строки
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
   };
 
-  // Обработчик для кнопки поиска
+  // Выполнение поиска по песням
   const handleSearch = async () => {
     if (searchTerm.trim()) {
       try {
         setResetSearch(1);
         const searchResults = await searchSongs(searchTerm);
-        setFilteredTracks(searchResults); // Обновляем отфильтрованные песни
+        setFilteredTracks(searchResults);
       } catch (error) {
-        console.error('Error searching songs:', error);
+        console.error('Ошибка поиска песен:', error);
       }
     } else {
-      setFilteredTracks(tracks); // Если поисковый запрос пустой, показываем все песни
+      setFilteredTracks(tracks); // Показываем все песни при пустом запросе
     }
   };
 
+  // Сброс поискового запроса
   const resetSearchTerm = () => {
     setFilteredTracks(tracks);
     setSearchTerm("");
     setResetSearch(0);
   }
 
+  // Воспроизведение выбранного трека
   const handlePlay = (track) => {
     const index = tracks.findIndex(t => t.id === track.id);
     setCurrentTrackIndex(index);
   };
 
+  // Переключение на следующий трек
   const handleNext = () => {
     if (currentTrackIndex < filteredTracks.length - 1) {
       setCurrentTrackIndex(currentTrackIndex + 1);
     } else {
-      setCurrentTrackIndex(0); // Loop back to the first track
+      setCurrentTrackIndex(0); // Циклическое воспроизведение: переходим к первому треку
     }
   };
 
+  // Переключение на предыдущий трек
   const handlePrev = () => {
     if (currentTrackIndex > 0) {
       setCurrentTrackIndex(currentTrackIndex - 1);
     } else {
-      setCurrentTrackIndex(filteredTracks.length - 1); // Loop to the last track
+      setCurrentTrackIndex(filteredTracks.length - 1); // Циклическое воспроизведение: переходим к последнему треку
     }
   };
 
@@ -73,7 +77,7 @@ export default function Music() {
     <div className="flex flex-col items-center p-5 bg-white text-gray-800 min-h-screen">
       <h1 className="text-3xl font-semibold mb-5 text-center">Библиотека песен</h1>
 
-      {/* Панель для поиска */}
+      {/* Панель поиска с кнопками */}
       <div className="bg-white border border-gray-300 rounded-lg p-4 mb-6 w-full max-w-lg flex flex-col items-center justify-between">
         <div className="flex flex-wrap md:flex-nowrap w-full mb-4 md:mb-0">
           <input
@@ -97,11 +101,10 @@ export default function Music() {
               Очистить
             </button>}
           </div>
-
         </div>
       </div>
 
-      {/* Список песен, отфильтрованных по запросу */}
+      {/* Список треков с возможностью воспроизведения */}
       <ul className="flex flex-wrap max-w-[1100px] gap-4 justify-center">
         {filteredTracks.map((track) => (
           <Track
@@ -112,7 +115,7 @@ export default function Music() {
         ))}
       </ul>
 
-      {/* Плеер */}
+      {/* Аудиоплеер в нижней части экрана */}
       <AudioPlayer currentTrack={currentTrack} tracks={filteredTracks} onNext={handleNext} onPrev={handlePrev} />
     </div>
   );

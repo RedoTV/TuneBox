@@ -32,7 +32,7 @@ export default function SongSelector({ playlistId }) {
                 // Убираем дублирующиеся песни по id
                 const uniqueSongs = Array.from(new Map(filteredSongs.map(song => [song.id, song])).values());
 
-                // Обновляем стейт песен
+                // Обновляем состояние песен
                 if (!isSearching) {
                     setSongs((prevSongs) => {
                         const allSongs = [...prevSongs, ...uniqueSongs];
@@ -42,7 +42,7 @@ export default function SongSelector({ playlistId }) {
                     });
                 }
             } catch (error) {
-                console.error("Error fetching songs:", error);
+                console.error("Ошибка при загрузке песен:", error);
                 setError("Ошибка при загрузке песен");
             } finally {
                 setLoading(false);
@@ -72,7 +72,7 @@ export default function SongSelector({ playlistId }) {
             await addSongToPlaylist(playlistId, songId, user.token);
             setAddedSongs(prevSet => new Set(prevSet.add(songId)));
         } catch (error) {
-            console.error("Error adding song to playlist:", error);
+            console.error("Ошибка во время добавления песни в плейлист:", error);
             setError("Ошибка во время добавления песни в плейлист.");
         }
     };
@@ -97,7 +97,7 @@ export default function SongSelector({ playlistId }) {
 
             setSongs(uniqueSearchResults);
         } catch (error) {
-            console.error("Error searching songs:", error);
+            console.error("Ошибка при поиске песни:", error);
             setError("Ошибка при поиске песни.");
         } finally {
             setLoading(false);

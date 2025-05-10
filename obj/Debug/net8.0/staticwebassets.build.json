@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "3dUIiNceLHFO8Af/neu+cVieKm/U5ivhLCxXbhzZ3w8=",
+  "Hash": "c0hbUW3SyxCoc02Y05YPNaVNchMY1fr6StOFrdIAOVI=",
   "Source": "TuneBox",
   "BasePath": "_content/TuneBox",
   "Mode": "Default",
@@ -17,12 +17,12 @@
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\vadim\\projects\\TuneBox\\wwwroot\\assets\\index-_erorbi_.css",
+      "Identity": "C:\\Users\\vadim\\projects\\TuneBox\\wwwroot\\assets\\index-bTBDgAb0.css",
       "SourceId": "TuneBox",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\vadim\\projects\\TuneBox\\wwwroot\\",
       "BasePath": "_content/TuneBox",
-      "RelativePath": "assets/index-_erorbi_.css",
+      "RelativePath": "assets/index-bTBDgAb0.css",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -33,15 +33,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\index-_erorbi_.css"
+      "OriginalItemSpec": "wwwroot\\assets\\index-bTBDgAb0.css"
     },
     {
-      "Identity": "C:\\Users\\vadim\\projects\\TuneBox\\wwwroot\\assets\\index-DUvD1e0n.js",
+      "Identity": "C:\\Users\\vadim\\projects\\TuneBox\\wwwroot\\assets\\index-BtJtR9ry.js",
       "SourceId": "TuneBox",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\vadim\\projects\\TuneBox\\wwwroot\\",
       "BasePath": "_content/TuneBox",
-      "RelativePath": "assets/index-DUvD1e0n.js",
+      "RelativePath": "assets/index-BtJtR9ry.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -52,7 +52,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\index-DUvD1e0n.js"
+      "OriginalItemSpec": "wwwroot\\assets\\index-BtJtR9ry.js"
     },
     {
       "Identity": "C:\\Users\\vadim\\projects\\TuneBox\\wwwroot\\index.html",

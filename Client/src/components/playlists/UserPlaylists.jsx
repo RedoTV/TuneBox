@@ -25,7 +25,7 @@ export default function UserPlaylists() {
           setPlaylists(playlistsData);
           setFilteredPlaylists(playlistsData); // Изначально показываем все плейлисты
         } catch (error) {
-          console.error("Failed to fetch user playlists:", error);
+          console.error("Ошибка при загрузке плейлистов пользователя:", error);
         }
       }
     };
@@ -39,8 +39,6 @@ export default function UserPlaylists() {
     );
     setFilteredPlaylists(filtered);
   }, [searchTerm, playlists]); // Перезапускаем фильтрацию, когда изменяется поисковый запрос или список плейлистов
-
-
 
   const handleCreatePlaylist = async () => {
     if (!newPlaylistName.trim()) {
@@ -61,8 +59,8 @@ export default function UserPlaylists() {
       setError(null); // Убираем ошибку
       navigate(`/user/playlists/`);
     } catch (error) {
-      console.error("Failed to create playlist:", error);
-      setError("Failed to create playlist. Please try again.");
+      console.error("Ошибка при добавлении плейлиста.:", error);
+      setError("Ошибка при добавлении плейлиста.");
     }
   };
 
@@ -72,14 +70,14 @@ export default function UserPlaylists() {
       setPlaylists(playlists.filter((playlist) => playlist.id !== id));
       setFilteredPlaylists(filteredPlaylists.filter((playlist) => playlist.id !== id)); // Убираем удаленный плейлист из отфильтрованного списка
     } catch (error) {
-      console.error("Failed to delete playlist:", error);
-      setError("Failed to delete playlist. Please try again.");
+      console.error("Ошибка при удалении плейлиста.", error);
+      setError("Ошибка при удалении плейлиста.");
     }
   };
 
   const handleUpdatePlaylist = async () => {
     if (!editPlaylistName.trim()) {
-      setError("Please enter a valid playlist name.");
+      setError("Введено некорректное название плейлиста.");
       return;
     }
 
@@ -95,8 +93,8 @@ export default function UserPlaylists() {
       setEditPlaylistName('');
       setError(null);
     } catch (error) {
-      console.error("Failed to update playlist:", error);
-      setError("Failed to update playlist. Please try again.");
+      console.error("Ошибка при обнавлении плейлиста:", error);
+      setError("Ошибка при обнавлении плейлиста.");
     }
   };
 
@@ -156,11 +154,11 @@ export default function UserPlaylists() {
             onClick={() => handlePlaylistClick(playlist.id)}
           >
             <div className="flex flex-col items-center">
-              <h3 className="text-2xl font-semibold text-indigo-600 mb-2">{playlist.name}</h3>
+              <h3 className="text-2xl font-semibold text-indigo-600 mb-2 text-center">{playlist.name}</h3>
               <p className="text-gray-500 text-lg">Создан: {new Date(playlist.createdAt).toLocaleDateString()}</p>
             </div>
 
-            {/* Add Song Button */}
+            {/* Кнопка добавления песни */}
             <button
               onClick={(e) => {
                 e.stopPropagation();
@@ -171,7 +169,7 @@ export default function UserPlaylists() {
               Добавить песни
             </button>
 
-            {/* Options Menu Toggle */}
+            {/* Переключатель опций меню */}
             <button
               className="absolute top-4 right-1 w-7 text-gray-600 hover:text-gray-800 text-2xl"
               onClick={(e) => {
@@ -182,7 +180,7 @@ export default function UserPlaylists() {
               ⋮
             </button>
 
-            {/* Options Menu */}
+            {/* Опции меню */}
             {showOptions === playlist.id && (
               <div className="absolute top-12 right-4 bg-white border rounded shadow-lg z-10">
                 <button
@@ -211,9 +209,7 @@ export default function UserPlaylists() {
         ))}
       </ul>
 
-
-
-      {/* Song Selector Modal */}
+      {/* Модальное окно выбора песни для добавления */}
       {selectedPlaylistIdForSong && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white p-8 rounded-lg shadow-lg relative">
@@ -228,7 +224,7 @@ export default function UserPlaylists() {
         </div>
       )}
 
-      {/* Edit Playlist Modal */}
+      {/* Модальное окно для изменения названия плейлиста */}
       {editPlaylistId && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg relative">
@@ -243,7 +239,7 @@ export default function UserPlaylists() {
             </button>
             <h3 className="text-xl font-semibold mb-4">Изменить Плейлист</h3>
 
-            {/* Input Field with Conditional Border */}
+            {/* Поля ввода данных с изменяющимся цветом границ */}
             <input
               type="text"
               value={editPlaylistName}

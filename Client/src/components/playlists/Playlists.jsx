@@ -9,7 +9,7 @@ export default function Playlists() {
     useEffect(() => {
         const loadPlaylists = async () => {
             try {
-                const playlistsData = await fetchPlaylists(20); // Fetch up to 20 playlists
+                const playlistsData = await fetchPlaylists(20); // Получаем 20 первых плейлистов
                 setPlaylists(playlistsData);
             } catch (error) {
                 console.error("Failed to fetch playlists:", error);
@@ -19,7 +19,7 @@ export default function Playlists() {
     }, []);
 
     const handlePlaylistClick = (id) => {
-        navigate(`/playlists/${id}`); // Navigate to the detail page
+        navigate(`/playlists/${id}`); // Переход на страницу подробного описания плейлиста
     };
 
     return (
